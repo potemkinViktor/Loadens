@@ -16,8 +16,11 @@
       <img class="connect" style="cursor:pointer" @click="showLogos = true" v-if="!showDiscover && !showLogos"
         src="./assets/connect (1).svg" alt="">
     </div>
-    <div style="display: flex" class="content_main"> 
-      <img v-if="!showLogos" src="./assets/animation.gif" alt="" class="gif">
+    <div style="display: flex" class="content_main">
+      <div class="animation_wrapper">
+        <img v-if="!showLogos" src="./assets/animation.gif" alt="" class="gif">
+        <img v-if="showDiscover" class="mint" :src="count()" alt="" :disabled="!mint">
+      </div>
       <div style="margin: 0 5%" class="image_main">
         <img class="textsvg" v-if="!showDiscover && !showLogos" src="./assets/текст.svg" />
         <img class="bigbtn" v-if="!showDiscover && !showLogos" @click="showDiscover = true; showBack = true"
@@ -27,26 +30,39 @@
       <div v-if="showDiscover" class="discover">
         <div class="disc-inner">
           <div class="timer-wrapper">
-            <div v-if="!mint" id="timer"></div>
+            <div class="times">
+              <div v-if="!mint" id="timer"></div>
+              <div class="timer">
+                <img src="./assets/days.svg" alt="days">
+                <img src="./assets/hours.svg" alt="days">
+                <img src="./assets/minutes.svg" alt="days">
+                <img src="./assets/seconds.svg" alt="days">
+              </div>
+            </div>
             <div class="timer-btn">
               <img src="./assets/public.svg" alt="public">
             </div>
           </div>
           <div class="timer-wrapper">
-            <div v-if="!mint" id="timer2"></div>
+            <div class="times">
+              <div v-if="!mint" id="timer2"></div>
+              <div class="timer">
+                <img src="./assets/days.svg" alt="days">
+                <img src="./assets/hours.svg" alt="days">
+                <img src="./assets/minutes.svg" alt="days">
+                <img src="./assets/seconds.svg" alt="days">
+              </div>
+            </div>
             <div class="timer-btn">
               <img src="./assets/whitelist.svg" alt="public">
             </div>
           </div>
-          <img class="mint" :src="count()" alt="" :disabled="!mint">
         </div>
-        
-
       </div>
     </div>
 
-    <div v-if="showLogos" class="logos">
 
+    <div v-if="showLogos" class="logos">
       <img class="soon" src="./assets/soon.svg" alt="">
     </div>
 
@@ -113,10 +129,10 @@ export default {
         }
         document.getElementById("timer")
           .innerHTML =
-          '<div>' + d + '<span>Days</span></div>' +
-          '<div>' + h + '<span>Hours</span></div>' +
-          '<div>' + m + '<span>Minutes</span></div>' +
-          '<div>' + s + '<span>Seconds</span></div>';
+          '<div>' + d + '</div>' +
+          '<div>' + h + '</div>' +
+          '<div>' + m + '</div>' +
+          '<div>' + s + '</div>';
 
       }
 
@@ -147,10 +163,10 @@ export default {
         }
         document.getElementById("timer2")
           .innerHTML =
-          '<div>' + d + '<span>Days</span></div>' +
-          '<div>' + h + '<span>Hours</span></div>' +
-          '<div>' + m + '<span>Minutes</span></div>' +
-          '<div>' + s + '<span>Seconds</span></div>';
+          '<div>' + d + '</div>' +
+          '<div>' + h + '</div>' +
+          '<div>' + m + '</div>' +
+          '<div>' + s + '</div>';
 
       }
 
@@ -232,45 +248,16 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
-  
+  transform: translate(-50%, -50%);
+
 }
 
 .logos img {
   max-width: 40vw;
-  width:100%;
+  width: 100%;
   margin: 0 auto;
 }
 
-#timer,
-#timer2 {
-  font-size: 3em;
-  font-weight: 100;
-  color: white;
-  /* padding: 10% 0; */
-  color: white;
-
-}
-
-#timer div,
-#timer2 div {
-  display: inline-block;
-  min-width: 50px;
-  padding: 10px;
-  background: #020b43;
-  border-radius: 10px;
-  border: 2px solid #030d52;
-  margin: 15px;
-}
-
-#timer div span,
-#timer2 div span {
-  color: #ffffff;
-  display: block;
-  margin-top: 15px;
-  font-size: .35em;
-  font-weight: 400;
-}
 
 .gif {
   width: 400px;
@@ -293,7 +280,7 @@ body {
   justify-content: center;
 }
 
-.discover .disc-inner .mint {
+ .mint {
   width: 400px;
   margin-top: 50px;
   cursor: pointer;
@@ -318,25 +305,78 @@ body {
   cursor: pointer;
   /* padding: 10%; */
 }
-.content_main{
+
+.content_main {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 75vh;
 }
+
 .image_main {
   display: flex;
   flex-direction: column;
 }
-.timer-wrapper{
+
+.timer-wrapper {
   display: flex;
   align-items: center;
 }
-.timer-btn{
+
+.timer-btn {
   cursor: pointer;
 }
-.timer-btn img{
+
+.timer-btn img {
   width: 250px;
   margin-left: 50px;
+}
+.animation_wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+#timer,
+#timer2 {
+  font-size: 3em;
+  font-weight: 100;
+  color: white;
+  /* padding: 10% 0; */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+
+}
+#timer2{
+  margin-top: 50px;
+}
+#timer div,
+#timer2 div {
+  display: inline-block;
+  min-width: 50px;
+  padding: 10px;
+  background: #020b43;
+  border-radius: 10px;
+  border: 2px solid #030d52;
+}
+
+#timer div span,
+#timer2 div span {
+  color: #ffffff;
+  display: block;
+  margin-top: 15px;
+  font-size: .35em;
+  font-weight: 400;
+  text-align: center;
+}
+.times{
+width: 400px;
+}
+.timer{
+  display: flex;
+  justify-content: space-between;
+}
+.timer img{
+width: 80px;
 }
 </style>
