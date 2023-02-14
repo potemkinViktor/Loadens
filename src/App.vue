@@ -16,8 +16,9 @@
       <img class="connect" style="cursor:pointer" @click="showLogos = true" v-if="!showDiscover && !showLogos"
         src="./assets/connect (1).svg" alt="">
     </div>
-    <div style="display: flex"> <img v-if="!showLogos" src="./assets/animation.gif" alt="" class="gif">
-      <div style="margin: 0 5%">
+    <div style="display: flex" class="content_main"> 
+      <img v-if="!showLogos" src="./assets/animation.gif" alt="" class="gif">
+      <div style="margin: 0 5%" class="image_main">
         <img class="textsvg" v-if="!showDiscover && !showLogos" src="./assets/текст.svg" />
         <img class="bigbtn" v-if="!showDiscover && !showLogos" @click="showDiscover = true; showBack = true"
           src="./assets/discover.svg" alt="">
@@ -25,12 +26,21 @@
 
       <div v-if="showDiscover" class="discover">
         <div class="disc-inner">
+          <div class="timer-wrapper">
             <div v-if="!mint" id="timer"></div>
-
+            <div class="timer-btn">
+              <img src="./assets/public.svg" alt="public">
+            </div>
+          </div>
+          <div class="timer-wrapper">
             <div v-if="!mint" id="timer2"></div>
+            <div class="timer-btn">
+              <img src="./assets/whitelist.svg" alt="public">
+            </div>
+          </div>
           <img class="mint" :src="count()" alt="" :disabled="!mint">
         </div>
-
+        
 
       </div>
     </div>
@@ -59,8 +69,9 @@ export default {
     return {
       mint: false,
       showLogos: false,
-      showDiscover: false,
-      showGif: false
+      showDiscover: true,
+      showGif: false,
+      showBack: false,
     }
   },
   methods: {
@@ -110,7 +121,7 @@ export default {
       }
 
     }
-    
+
     function updateTimer2() {
       if (that.showDiscover) {
         let future = Date.parse("feb 15, 2023 10:12:00");
@@ -218,31 +229,31 @@ body {
 }
 
 .logos {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  margin: 10%;
-  gap: 10px;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  
 }
 
 .logos img {
-  width: 100%;
-  height: 50px;
+  max-width: 40vw;
+  width:100%;
+  margin: 0 auto;
 }
 
-#timer, #timer2 {
+#timer,
+#timer2 {
   font-size: 3em;
   font-weight: 100;
   color: white;
   /* padding: 10% 0; */
-  width: 550px;
   color: white;
 
 }
 
-#timer div, #timer2 div {
+#timer div,
+#timer2 div {
   display: inline-block;
   min-width: 50px;
   padding: 10px;
@@ -252,7 +263,8 @@ body {
   margin: 15px;
 }
 
-#timer div span, #timer2 div span {
+#timer div span,
+#timer2 div span {
   color: #ffffff;
   display: block;
   margin-top: 15px;
@@ -262,7 +274,6 @@ body {
 
 .gif {
   width: 400px;
-  margin-left: 10%;
   height: 400px;
 }
 
@@ -277,8 +288,9 @@ body {
 
 .discover .disc-inner {
   display: flex;
-  margin: 50px;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .discover .disc-inner .mint {
@@ -305,5 +317,26 @@ body {
   width: 400px;
   cursor: pointer;
   /* padding: 10%; */
+}
+.content_main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 75vh;
+}
+.image_main {
+  display: flex;
+  flex-direction: column;
+}
+.timer-wrapper{
+  display: flex;
+  align-items: center;
+}
+.timer-btn{
+  cursor: pointer;
+}
+.timer-btn img{
+  width: 250px;
+  margin-left: 50px;
 }
 </style>
