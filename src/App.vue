@@ -85,7 +85,7 @@ export default {
     return {
       mint: false,
       showLogos: false,
-      showDiscover: true,
+      showDiscover: false,
       showGif: false,
       showBack: false,
     }
