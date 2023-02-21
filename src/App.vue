@@ -7,7 +7,8 @@
 
     <div class="buttons">
       <img v-if="!showDiscover && !showLogos" class="logo" src="./assets/loadens.svg" alt="">
-      <img class="classik" @click="showLogos = true" v-if="!showDiscover && !showLogos" src="./assets/for creators.svg"
+      
+      <img class="classik" @click="golink()"  v-if="!showDiscover && !showLogos" src="./assets/for creators.svg"
         alt="">
       <img class="classik" @click="showLogos = true" v-if="!showDiscover && !showLogos" src="./assets/launches.svg"
         alt="">
@@ -40,7 +41,7 @@
               </div>
             </div>
             <div class="timer-btn">
-              <img src="./assets/public.svg" alt="public">
+              <img src="./assets/whitelist.svg" alt="whitelist">
             </div>
           </div>
           <div class="timer-wrapper">
@@ -54,7 +55,7 @@
               </div>
             </div>
             <div class="timer-btn">
-              <img src="./assets/whitelist.svg" alt="public">
+              <img src="./assets/public.svg" alt="public">
             </div>
           </div>
         </div>
@@ -91,6 +92,9 @@ export default {
     }
   },
   methods: {
+    golink(){
+      window.open('https://docs.google.com/forms/d/e/1FAIpQLSdw2aZOd36J7d-HlCxTFH-GajRp6Wivo3dNHD_ut-vbvfhHlg/viewform')
+    },
     count() {
       if (this.mint) {
         return 'mint.svg'
@@ -106,7 +110,7 @@ export default {
 
     function updateTimer() {
       if (that.showDiscover) {
-        let future = Date.parse("feb 14, 2023 20:12:00");
+        let future = Date.parse("mar 02, 2023 00:00:00");
         let now = new Date();
         let diff = future - now;
 
@@ -140,7 +144,7 @@ export default {
 
     function updateTimer2() {
       if (that.showDiscover) {
-        let future = Date.parse("feb 15, 2023 10:12:00");
+        let future = Date.parse("mar 02, 2023 00:10:00");
         let now = new Date();
         let diff = future - now;
 
